@@ -1,0 +1,22 @@
+<div class="card mb-3" *ngFor="let movie of movies">
+  <div class="row">
+    <div class="col-md-3">
+      <img
+        src="../../assets/img/{{ movie.image }}"
+        class="img-fluid rounded-start w-100"
+        alt="gifted"
+      />
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <h2 class="car-title">{{ movie.name }}</h2>
+        <p class="card-text">
+          {{ movie.description }}
+        </p>
+        <button class="btn btn-sm btn-outline-primary">Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-movie></app-movie>
