@@ -61,7 +61,7 @@ export class MovieRepository {
               bürünür. Kötü adamları adalete teslim etme vazifesini üstlenen The Flash oldukça hızlıdır.`,
         image: 'Flash.jpg',
         isPopular: true,
-      },
+      }
     ];
   }
 
