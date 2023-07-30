@@ -2,5 +2,6 @@ export interface Movie{
     id:number,
     name:string,
     description:string,
-    image:string
+    image:string,
+    isPopular:boolean
 }
