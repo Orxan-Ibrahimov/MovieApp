@@ -1,9 +1,12 @@
 
 
 <div *ngIf="movies.length > 0; else no_movies">
-  <ng-template [ngTemplateOutlet]="popularFilms" [ngTemplateOutletContext]="{populars: movieRepository.getPopularMovies()}"></ng-template>
+
+  <input type="text" class="form-control" [(ngModel)]="filterText">
+  <!-- <ng-template [ngTemplateOutlet]="popularFilms" [ngTemplateOutletContext]="{populars: movieRepository.getPopularMovies()}"></ng-template> -->
 
   <h4 class="alert alert-info">{{ movies.length }} films was found</h4>
+  <h4 class="alert alert-muted" *ngIf="filterText">text: {{ filterText }}</h4>
 
   <ng-template [ngTemplateOutlet]="movieList"></ng-template>
 </div>
@@ -14,7 +17,7 @@
 </ng-template>
 
 <ng-template #movieList>
-  <div class="card mb-3" *ngFor="let movie of movies">
+  <div class="card mb-3" *ngFor="let movie of movies | movieFilter: filterText">
     <div class="row">
       <div class="col-md-3">
         <img
@@ -27,7 +30,10 @@
         <div class="card-body">
           <h2 class="car-title">{{ movie.name }}</h2>
           <p class="card-text">
-            {{ movie.description }}
+            {{ movie.description | summary }}
+          </p>
+          <p class="card-text">
+            {{ movie.datePublish | date:'M/d/yy' }}
           </p>
           <button class="btn btn-sm btn-outline-primary">Details</button>
         </div>
@@ -36,7 +42,7 @@
   </div>
 </ng-template>
 
-<ng-template #popularFilms let-populars="populars">
+<!-- <ng-template #popularFilms let-populars="populars">
   <h3 class="alert alert-success">Popoulars</h3>
   <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
     <div class="col" *ngFor="let movie of populars">
@@ -60,7 +66,7 @@
   </div>
   
 </ng-template>
-
+ -->
 
 
 

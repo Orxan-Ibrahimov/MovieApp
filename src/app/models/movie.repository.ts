@@ -13,6 +13,7 @@ export class MovieRepository {
               Na'vi halkının gezegen Pandora'da geçmektedir.`,
         image: 'Avatar.jpg',
         isPopular: true,
+        datePublish: new Date(2017)
       },
       {
         id: 2,
@@ -23,6 +24,7 @@ export class MovieRepository {
               beklenmedik bir şekilde karşılaşmasıyla başlar.`,
         image: 'Ghosted.jpg',
         isPopular: false,
+        datePublish: new Date(2017)
       },
       {
         id: 3,
@@ -32,6 +34,7 @@ export class MovieRepository {
               adamdır.`,
         image: 'gifted.jpg',
         isPopular: false,
+        datePublish: new Date(2017)
       },
       {
         id: 4,
@@ -41,6 +44,7 @@ export class MovieRepository {
                 süper kahramanların arasındaki çatışmaları ve ayrışmayı konu alır.`,
         image: 'Captain-America-Ciwil-War.jpg',
         isPopular: true,
+        datePublish: new Date(2017)
       },
       {
         id: 5,
@@ -50,6 +54,7 @@ export class MovieRepository {
                karar verir.`,
         image: 'she-is-the-man.jpg',
         isPopular: false,
+        datePublish: new Date(2017)
       },
       {
         id: 6,
@@ -61,6 +66,7 @@ export class MovieRepository {
               bürünür. Kötü adamları adalete teslim etme vazifesini üstlenen The Flash oldukça hızlıdır.`,
         image: 'Flash.jpg',
         isPopular: true,
+        datePublish: new Date(2017)
       }
     ];
   }

@@ -10,6 +10,7 @@ import { MovieRepository } from '../models/movie.repository';
 export class MoviesComponent implements OnInit {
   movies:Movie[];
   movieRepository:MovieRepository;
+  filterText:string;
   constructor() {
     this.movieRepository = new MovieRepository();
     this.movies = this.movieRepository.getMovies();
