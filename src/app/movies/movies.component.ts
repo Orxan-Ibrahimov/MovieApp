@@ -8,15 +8,25 @@ import { MovieRepository } from '../models/movie.repository';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit {
-  movies:Movie[];
-  movieRepository:MovieRepository;
-  filterText:string;
+  movies: Movie[];
+  moviesClone: Movie[];
+  movieRepository: MovieRepository;
+  filterText: string;
   constructor() {
     this.movieRepository = new MovieRepository();
     this.movies = this.movieRepository.getMovies();
+    this.moviesClone = this.movies;
   }
 
   ngOnInit(): void {}
 
-  // movies = ["movie-1", "movie-2", "movie-3", ""];
+  SearchMovies(text: string): Movie[] {
+     this.moviesClone = text
+      ? this.movies.filter(
+          (m: Movie) => m.name.toLowerCase().indexOf(text.toLowerCase()) !== -1
+        )
+      : this.movies;
+
+    return this.moviesClone;
+  }
 }
