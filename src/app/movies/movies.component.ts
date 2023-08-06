@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie.repository';
+import { AlertifyService } from '../services/alertify.service';
+import { HttpClient } from '@angular/common/http';
 
-declare let alertify:any;
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit {
-  movies: Movie[];
+  movies: Movie[] = [];
   moviesClone: Movie[];
-  movieRepository: MovieRepository;
   filterText: string;
-  constructor() {
-    this.movieRepository = new MovieRepository();
-    this.movies = this.movieRepository.getMovies();
-    this.moviesClone = this.movies;
+  constructor(private alertifyService: AlertifyService, http: HttpClient) {
+    http.get<Movie[]>('http://localhost:3000/movies').subscribe((data) => {
+      this.movies = data;
+    });
   }
 
   ngOnInit(): void {}
@@ -31,22 +31,19 @@ export class MoviesComponent implements OnInit {
     return this.moviesClone;
   }
 
-  AddToList(event: any) {
-    if(event.target.classList.contains("btn-primary")){
-      event.target.classList.remove("btn-primary");
-      event.target.classList.add("btn-danger");
-      event.target.innerText = "Remove from list";
+  AddToList(event: any, movie: Movie) {
+    if (event.target.classList.contains('btn-primary')) {
+      event.target.classList.remove('btn-primary');
+      event.target.classList.add('btn-danger');
+      event.target.innerText = 'Remove from list';
 
-      alertify.success('Movie was added to list!');
-    }
-    else{
-      event.target.classList.remove("btn-danger");
-      event.target.classList.add("btn-primary");
-      event.target.innerText = "Add to list"; 
+      this.alertifyService.success(movie.name + ' was added to list!');
+    } else {
+      event.target.classList.remove('btn-danger');
+      event.target.classList.add('btn-primary');
+      event.target.innerText = 'Add to list';
 
-      alertify.error('Movie was removed from list!');
+      this.alertifyService.danger(movie.name + ' was removed from list!');
     }
   }
-
-
 }

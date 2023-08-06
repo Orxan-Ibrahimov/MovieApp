@@ -11,6 +11,8 @@ import { MovieDetailsComponent } from './movies/movie-details/movie-details.comp
 import { SummaryPipe } from './pipes/summary.pipe';
 import { MovieFilterPipe } from './pipes/movie-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { AlertifyService } from './services/alertify.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -27,9 +29,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AlertifyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

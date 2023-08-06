@@ -13,7 +13,7 @@
 </ng-template>
 
 <ng-template #movieList>
-  <div class="card mb-3" *ngFor="let movie of moviesClone">
+  <div class="card mb-3" *ngFor="let movie of movies">
     <div class="row">
       <div class="col-md-3">
         <img
@@ -32,7 +32,7 @@
             {{ movie.datePublish | date : "M/d/yy" }}
           </p>
           <button class="btn btn-sm btn-outline-primary">Details</button>
-          <button class="btn btn-sm btn-primary ms-2" (click)="AddToList($event)">Add To List</button>
+          <button class="btn btn-sm btn-primary ms-2" (click)="AddToList($event,movie)">Add To List</button>
         </div>
       </div>
     </div>

@@ -5,22 +5,7 @@ export class CategoryRepository {
 
   constructor() {
     this.categories = [
-      {
-        id: 1,
-        category: 'Dram',
-      },
-      {
-        id: 2,
-        category: 'Romantic',
-      },
-      {
-        id: 3,
-        category: 'Fantastic',
-      },
-      {
-        id: 4,
-        category: 'Animation',
-      },
+      
     ];
   }
 
