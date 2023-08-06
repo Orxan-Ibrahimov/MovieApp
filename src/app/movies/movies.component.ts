@@ -3,20 +3,22 @@ import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie.repository';
 import { AlertifyService } from '../services/alertify.service';
 import { HttpClient } from '@angular/common/http';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
+  providers:[MovieService]
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   moviesClone: Movie[];
   filterText: string;
-  constructor(private alertifyService: AlertifyService, http: HttpClient) {
-    http.get<Movie[]>('http://localhost:3000/movies').subscribe((data) => {
+  constructor(private alertifyService: AlertifyService, movieService:MovieService) {
+    movieService.GetMovies().subscribe((data) => {
       this.movies = data;
-    });
+    })
   }
 
   ngOnInit(): void {}

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoryRepository } from '../models/category.repository';
 import { HttpClient } from '@angular/common/http';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
+  providers:[CategoryService]
 })
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
@@ -15,8 +17,8 @@ export class CategoryComponent implements OnInit {
   selectedCategory: Category;
 
 
-  constructor(http:HttpClient) {
-    http.get<Category[]>("http://localhost:3000/categories").subscribe((data) => {
+  constructor(private categoryService:CategoryService) {
+    this.categoryService.GetCategories().subscribe((data) => {
       this.categories = data;
     });
   }
