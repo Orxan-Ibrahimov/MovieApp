@@ -2,7 +2,7 @@
   <input type="text" class="form-control" [(ngModel)]="filterText" (ngModelChange)="SearchMovies(filterText)" />
   <!-- <ng-template [ngTemplateOutlet]="popularFilms" [ngTemplateOutletContext]="{populars: movieRepository.getPopularMovies()}"></ng-template> -->
 
-  <h4 class="alert alert-info">{{ movies.length }} films was found</h4>
+  <h4 class="alert alert-info" *ngIf="(moviesClone.length > 0) else no_movies">{{ moviesClone.length }} films was found</h4>
   <h4 class="alert alert-muted" *ngIf="filterText">text: {{ filterText }}</h4>
 
   <ng-template [ngTemplateOutlet]="movieList"></ng-template>
@@ -13,7 +13,7 @@
 </ng-template>
 
 <ng-template #movieList>
-  <div class="card mb-3" *ngFor="let movie of movies">
+  <div class="card mb-3" *ngFor="let movie of moviesClone">
     <div class="row">
       <div class="col-md-3">
         <img

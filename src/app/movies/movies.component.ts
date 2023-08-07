@@ -4,6 +4,7 @@ import { MovieRepository } from '../models/movie.repository';
 import { AlertifyService } from '../services/alertify.service';
 import { HttpClient } from '@angular/common/http';
 import { MovieService } from '../services/movie.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -15,13 +16,19 @@ export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   moviesClone: Movie[];
   filterText: string;
-  constructor(private alertifyService: AlertifyService, movieService:MovieService) {
-    movieService.GetMovies().subscribe((data) => {
-      this.movies = data;
-    })
-  }
+  constructor(private alertifyService: AlertifyService, 
+    private movieService:MovieService,
+    private activatedRoute:ActivatedRoute
+    ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.movieService.GetMovies(params['categoryId']).subscribe((data) => {
+        this.movies = data;
+        this.moviesClone = this.movies;
+      })
+    });
+  }
 
   SearchMovies(text: string): Movie[] {
     this.moviesClone = text
