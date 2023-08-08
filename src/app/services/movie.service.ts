@@ -31,7 +31,7 @@ export class MovieService {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'Token',
+        'Authorization': 'Token',
       }),
     };
 
